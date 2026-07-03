@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const ServiceCard = ({ service }) => {
   return (
@@ -14,7 +15,9 @@ const ServiceCard = ({ service }) => {
           <span className="text-gold font-semibold">{service.price}</span>
           <span>{service.duration}</span>
         </div>
-        <button className="gold-btn w-full">Book Now</button>
+        <Link to="/book-appointment" className="gold-btn w-full text-center block">
+          Book Now
+        </Link>
       </div>
     </motion.div>
   )

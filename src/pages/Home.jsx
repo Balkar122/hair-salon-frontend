@@ -22,9 +22,9 @@ const Home = () => {
       <section className="section-padding bg-black text-white">
         <div className="container-custom grid md:grid-cols-4 gap-8 text-center">
           <div><h3 className="text-4xl text-gold font-bold">15+</h3><p>Years Experience</p></div>
-          <div><h3 className="text-4xl text-gold font-bold">5k+</h3><p>Happy Clients</p></div>
-          <div><h3 className="text-4xl text-gold font-bold">20+</h3><p>Expert Staff</p></div>
-          <div><h3 className="text-4xl text-gold font-bold">50+</h3><p>Awards Won</p></div>
+          <div><h3 className="text-4xl text-gold font-bold">20k+</h3><p>Happy Clients</p></div>
+          <div><h3 className="text-4xl text-gold font-bold">5+</h3><p>Expert Staff</p></div>
+          <div><h3 className="text-4xl text-gold font-bold">10+</h3><p>Awards Won</p></div>
         </div>
       </section>
 
