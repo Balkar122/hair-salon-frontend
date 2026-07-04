@@ -1,4 +1,4 @@
-@import url('[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap)');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,11 +25,11 @@ body {
 }
 
 .gold-btn {
-  @apply bg-gold text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg;
+  @apply bg-gold text-white px-6 py-3 rounded-full font-semibold hover:scale-105 transition duration-300 shadow-lg;
 }
 
 .outline-btn {
-  @apply border border-gold text-gold px-6 py-3 rounded-full font-semibold hover:bg-gold hover:text-black transition duration-300;
+  @apply border border-gold text-gold px-6 py-3 rounded-full font-semibold hover:bg-gold hover:text-white transition duration-300;
 }
 
 .card-luxury {

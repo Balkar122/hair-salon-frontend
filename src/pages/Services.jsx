@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -16,54 +18,92 @@ const Services = () => {
     fetchServices();
   }, []);
 
-  // Group services by category
-  const grouped = services.reduce((acc, service) => {
-    if (!acc[service.category]) acc[service.category] = [];
-    acc[service.category].push(service);
-    return acc;
-  }, {});
+  const categories = ["All", ...new Set(services.map((s) => s.category))];
+
+  const filteredServices =
+    activeCategory === "All"
+      ? services
+      : services.filter((s) => s.category === activeCategory);
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "700px", margin: "0 auto" }}>
-      <h1>Our Services</h1>
-      {Object.keys(grouped).length === 0 ? (
-        <p>No services available yet.</p>
-      ) : (
-        Object.keys(grouped).map((category) => (
-          <div key={category} style={{ marginBottom: "2rem" }}>
-            <h2 style={{ borderBottom: "2px solid #ccc", paddingBottom: "0.5rem" }}>
-              {category}
-            </h2>
-            {grouped[category].map((service) => (
-              <div
-                key={service._id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "0.75rem 0",
-                  borderBottom: "1px solid #eee",
-                }}
-              >
-                <div>
-                  <strong>{service.name}</strong>
-                  {service.duration && (
-                    <span style={{ color: "#777", marginLeft: "0.5rem" }}>
-                      ({service.duration})
-                    </span>
-                  )}
-                  {service.description && (
-                    <p style={{ margin: "0.2rem 0 0", color: "#666", fontSize: "0.9rem" }}>
-                      {service.description}
-                    </p>
-                  )}
+    <section className="section-padding bg-cream min-h-screen">
+      <div className="container-custom">
+        <p className="text-gold uppercase tracking-[0.3em] text-sm text-center mb-3">
+          What We Offer
+        </p>
+        <h1 className="text-4xl font-display text-center mb-12">Our Services</h1>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Sidebar */}
+          <aside className="bg-black rounded-3xl p-6 h-fit md:sticky md:top-24">
+            <h3 className="text-gold uppercase tracking-widest text-sm font-semibold mb-4">
+              Categories
+            </h3>
+            <ul className="space-y-2">
+              {categories.map((cat) => (
+                <li key={cat}>
+                  <button
+                    onClick={() => setActiveCategory(cat)}
+                    className={`w-full text-left px-4 py-2 rounded-xl transition ${
+                      activeCategory === cat
+                        ? "bg-gold text-white font-semibold"
+                        : "text-white/70 hover:bg-white/10"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </aside>
+
+          {/* Service list */}
+          <div className="md:col-span-3 space-y-6">
+            {filteredServices.length === 0 ? (
+              <p className="text-center text-gray-500 py-10">
+                No services available in this category yet.
+              </p>
+            ) : (
+              filteredServices.map((service) => (
+                <div
+                  key={service._id}
+                  className="card-luxury flex flex-col sm:flex-row items-stretch overflow-hidden"
+                >
+                  <img
+                    src={service.image || "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=400"}
+                    alt={service.name}
+                    className="w-full sm:w-48 h-48 sm:h-auto object-cover"
+                  />
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-display mb-1">{service.name}</h3>
+                      {service.duration && (
+                        <p className="text-sm text-gray-500 mb-2">⏱ {service.duration}</p>
+                      )}
+                      {service.description && (
+                        <p className="text-gray-600 dark:text-gray-300 mb-3">
+                          {service.description}
+                        </p>
+                      )}
+                      <p className="text-gold font-bold text-lg">₹{service.price}</p>
+                    </div>
+                    <div className="flex gap-3 mt-4">
+                      <Link
+                        to="/book-appointment"
+                        className="gold-btn text-center flex-1"
+                      >
+                        Book Now
+                      </Link>
+                      <button className="outline-btn flex-1">View More</button>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ fontWeight: "bold" }}>₹{service.price}</div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
-        ))
-      )}
-    </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

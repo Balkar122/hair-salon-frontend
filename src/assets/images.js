@@ -2,18 +2,18 @@ export const heroImage =
   'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600'
 
 export const galleryImages = [
-  https://kommodo.ai/i/VFUclCIlrJdLTv9huT9p
-  'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800',
+  'https://kommodo.ai/i/VFUclCIlrJdLTv9huT9p',
+  'https://kommodo.ai/i/rDUnI1myU1bFpyRn0ePs',
   'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800',
   'https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800',
 ]
 
-// ADD THESE — one per service
+// One image per service
 export const haircutImage =
-  https://kommodo.ai/i/KZfE4Y4XNsBab6H3sbtY
+  'https://kommodo.ai/i/KZfE4Y4XNsBab6H3sbtY'
 
 export const stylingImage =
-  https://kommodo.ai/i/VFUclCIlrJdLTv9huT9p
+  'https://kommodo.ai/i/VFUclCIlrJdLTv9huT9p'
 
 export const coloringImage =
   'https://images.unsplash.com/photo-1595475884562-073c30d45670?auto=format&fit=crop&w=800'

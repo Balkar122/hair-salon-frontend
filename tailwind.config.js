@@ -5,8 +5,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        gold: '#C9A227',
-        black: '#111111',
+        gold: '#C81E3A',      // now the red accent (kept key name so all gold-* classes still work)
+        black: '#0B1F3A',     // now deep navy (kept key name so all bg-black/text-black classes still work)
         cream: '#F8F5F0',
         white: '#FFFFFF',
       },
@@ -15,11 +15,11 @@ export default {
         body: ['Inter', 'sans-serif'],
       },
       boxShadow: {
-        luxury: '0 10px 30px rgba(0,0,0,0.15)',
+        luxury: '0 10px 30px rgba(11,31,58,0.15)',
         glass: '0 8px 32px rgba(31, 38, 135, 0.15)',
       },
       backgroundImage: {
-        goldGradient: 'linear-gradient(135deg, #C9A227, #E5C76B)',
+        goldGradient: 'linear-gradient(135deg, #C81E3A, #E85D6A)',
       },
     },
   },
