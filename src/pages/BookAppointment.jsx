@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const BookAppointment = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +9,22 @@ const BookAppointment = () => {
     date: "",
     time: "",
   });
+  const [services, setServices] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/services`);
+        const data = await res.json();
+        setServices(data);
+      } catch (err) {
+        console.error("Failed to load services:", err);
+      }
+    };
+    fetchServices();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -83,14 +97,24 @@ const BookAppointment = () => {
             required
             className="w-full p-4 rounded-xl border border-gray-200 focus:border-gold focus:outline-none transition"
           />
-          <input
+
+          <select
             name="service"
-            placeholder="Service (e.g. Haircut)"
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full p-4 rounded-xl border border-gray-200 focus:border-gold focus:outline-none transition"
-          />
+            className="w-full p-4 rounded-xl border border-gray-200 focus:border-gold focus:outline-none transition bg-white text-gray-700"
+          >
+            <option value="" disabled>
+              Select a Service
+            </option>
+            {services.map((s) => (
+              <option key={s._id} value={s.name}>
+                {s.name} — ₹{s.price} {s.duration ? `(${s.duration})` : ""}
+              </option>
+            ))}
+          </select>
+
           <div className="grid grid-cols-2 gap-4">
             <input
               name="date"
