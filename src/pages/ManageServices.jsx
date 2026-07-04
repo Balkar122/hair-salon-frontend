@@ -13,7 +13,7 @@ const ManageServices = () => {
   const [editingId, setEditingId] = useState(null);
 
   const fetchServices = async () => {
-    const res = await fetch("http://localhost:5000/api/services");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/services`);
     const data = await res.json();
     setServices(data);
   };
@@ -31,7 +31,7 @@ const ManageServices = () => {
     try {
       if (editingId) {
         // Update existing service
-        await fetch(`http://localhost:5000/api/services/${editingId}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/services/${editingId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -39,7 +39,7 @@ const ManageServices = () => {
         setEditingId(null);
       } else {
         // Create new service
-        await fetch("http://localhost:5000/api/services", {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/services`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -66,7 +66,7 @@ const ManageServices = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this service?")) return;
-    await fetch(`http://localhost:5000/api/services/${id}`, { method: "DELETE" });
+    await fetch(`${import.meta.env.VITE_API_URL}/api/services/${id}`, { method: "DELETE" });
     fetchServices();
   };
 

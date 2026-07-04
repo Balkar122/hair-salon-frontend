@@ -6,7 +6,7 @@ const AdminDashboard = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/bookings/all");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/bookings/all`);
       const data = await res.json();
       setBookings(data);
     } catch (err) {
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await fetch(`http://localhost:5000/api/bookings/${id}/status`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/bookings/${id}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
